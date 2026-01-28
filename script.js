@@ -12,14 +12,14 @@ async function loadNowPlaying() {
       titleEl.textContent = 'Nothing playing right now';
       artistEl.textContent = '';
       artEl.src = '';
-      statusEl.textContent = 'Open Spotify and start a track.';
+      statusEl.textContent = 'Open your music app and start a track.';
       return;
     }
 
     titleEl.textContent = data.title;
     artistEl.textContent = data.artist;
     artEl.src = data.albumArt;
-    statusEl.textContent = data.playing ? '▶ Playing on Spotify' : '⏸ Paused';
+    statusEl.textContent = '▶ Now scrobbling via Last.fm';
   } catch (e) {
     console.error(e);
     document.getElementById('songTitle').textContent = 'Error loading track';
