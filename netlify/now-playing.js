@@ -1,9 +1,7 @@
-exports.handler = async () => {
 exports.handler = async (event) => {
   const params = event.queryStringParameters;
   const username = params.user || "Benxs44"; // fallback to you
   const apiKey = "db9963b4676e1bdec97a158e88e8d3de";
-
 
   const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=5`;
 
