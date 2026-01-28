@@ -1,19 +1,57 @@
 body {
-  background: #050509;
-  color: #f5f5f5;
-  font-family: system-ui, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   margin: 0;
+  font-family: system-ui, sans-serif;
+  color: #f5f5f5;
 }
 
+/* Blurred album background wrapper */
+.background-wrapper {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #050509;
+}
+
+.background-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--album-bg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(40px);
+  opacity: 0.35;
+  transform: scale(1.1);
+  z-index: 0;
+}
+
+/* Main layout: sidebar + card */
+.layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.sidebar {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Card styling */
 .card {
+  flex: 1;
   background: #15151f;
   padding: 30px;
   border-radius: 16px;
-  width: 320px;
   text-align: center;
   box-shadow: 0 0 30px rgba(0,0,0,0.6);
 }
