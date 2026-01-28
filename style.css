@@ -1,0 +1,40 @@
+body {
+  background: #050509;
+  color: #f5f5f5;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.card {
+  background: #15151f;
+  padding: 30px;
+  border-radius: 16px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.6);
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #1db954;
+}
+
+#albumArt {
+  width: 250px;
+  height: 250px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  object-fit: cover;
+  background: #222;
+}
+
+#status {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #aaaaaa;
+}
