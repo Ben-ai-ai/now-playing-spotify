@@ -9,13 +9,17 @@
 <body>
   <div class="background-wrapper">
     <div class="layout">
-      <div class="sidebar">
-        <h2>Welcome!</h2>
-        <p>This site shows what you're listening to right now via Last.fm.</p>
+   <div class="sidebar">
+  <h2>Welcome!</h2>
+  <p>This site shows what you're listening to right now via Last.fm.</p>
 
-        <h3>Recently Played</h3>
-        <ul id="recentList"></ul>
-      </div>
+  <label for="usernameInput"><strong>Enter Last.fm Username:</strong></label>
+  <input id="usernameInput" type="text" placeholder="e.g. Benxs44">
+  <button id="loadUserBtn">Load</button>
+
+  <h3>Recently Played</h3>
+  <ul id="recentList"></ul>
+</div>
 
       <div class="card">
         <h1>Now Playing</h1>
