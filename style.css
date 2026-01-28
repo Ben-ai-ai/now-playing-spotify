@@ -81,8 +81,7 @@ h1 {
 #recentList {
   list-style: none;
   padding: 0;
-  margin-top: 20px;
-  text-align: left;
+  margin-top: 15px;
 }
 
 #recentList li {
@@ -94,9 +93,9 @@ h1 {
 }
 
 #recentList li img {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 6px;
-  margin-right: 12px;
+  margin-right: 10px;
   object-fit: cover;
 }
