@@ -1,6 +1,6 @@
-async function loadNowPlaying() {
+async function loadNowPlaying(username) {
   try {
-    const res = await fetch('/.netlify/functions/now-playing');
+    const res = await fetch(`/.netlify/functions/now-playing?user=${username}`);
     const data = await res.json();
 
     const titleEl = document.getElementById('songTitle');
@@ -9,35 +9,29 @@ async function loadNowPlaying() {
     const statusEl = document.getElementById('status');
     const recentList = document.getElementById('recentList');
 
-    // If nothing is playing
     if (!data.playing) {
       titleEl.textContent = 'Nothing playing right now';
       artistEl.textContent = '';
       artEl.src = '';
       statusEl.textContent = 'Open your music app and start a track.';
-
       document.documentElement.style.setProperty('--album-bg', 'none');
       recentList.innerHTML = "";
       return;
     }
 
-    // Now playing info
     titleEl.textContent = data.title;
     artistEl.textContent = data.artist;
     artEl.src = data.albumArt;
-    statusEl.textContent = '▶ Now scrobbling via Last.fm';
+    statusEl.textContent = `▶ Now scrobbling via Last.fm (${username})`;
 
-    // Update blurred background
     document.documentElement.style.setProperty(
       '--album-bg',
       `url(${data.albumArt})`
     );
 
-    // Recently played list
     recentList.innerHTML = "";
-
     data.recent.forEach((track, index) => {
-      if (index === 0) return; // skip now playing
+      if (index === 0) return;
 
       const li = document.createElement('li');
       li.innerHTML = `
@@ -56,5 +50,17 @@ async function loadNowPlaying() {
   }
 }
 
-loadNowPlaying();
-setInterval(loadNowPlaying, 15000);
+// Load saved username or default
+let currentUser = localStorage.getItem('lastfmUser') || "Benxs44";
+loadNowPlaying(currentUser);
+setInterval(() => loadNowPlaying(currentUser), 15000);
+
+// Handle username change
+document.getElementById('loadUserBtn').addEventListener('click', () => {
+  const input = document.getElementById('usernameInput').value.trim();
+  if (input.length > 0) {
+    currentUser = input;
+    localStorage.setItem('lastfmUser', input);
+    loadNowPlaying(currentUser);
+  }
+});
