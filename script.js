@@ -17,9 +17,15 @@ async function loadNowPlaying() {
     }
 
     titleEl.textContent = data.title;
-    artistEl.textContent = data.artist;
-    artEl.src = data.albumArt;
-    statusEl.textContent = '▶ Now scrobbling via Last.fm';
+artistEl.textContent = data.artist;
+artEl.src = data.albumArt;
+statusEl.textContent = '▶ Now scrobbling via Last.fm';
+
+document.documentElement.style.setProperty(
+  '--album-bg',
+  `url(${data.albumArt})`
+);
+
   } catch (e) {
     console.error(e);
     document.getElementById('songTitle').textContent = 'Error loading track';
