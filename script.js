@@ -16,11 +16,8 @@ async function loadNowPlaying() {
       artEl.src = '';
       statusEl.textContent = 'Open your music app and start a track.';
 
-      // Reset blurred background
       document.documentElement.style.setProperty('--album-bg', 'none');
-
-      // Clear recently played list
-      if (recentList) recentList.innerHTML = "";
+      recentList.innerHTML = "";
       return;
     }
 
@@ -37,21 +34,21 @@ async function loadNowPlaying() {
     );
 
     // Recently played list
-    if (recentList && data.recent) {
-      recentList.innerHTML = "";
+    recentList.innerHTML = "";
 
-      data.recent.forEach((track, index) => {
-        if (index === 0) return; // skip the now playing track
+    data.recent.forEach((track, index) => {
+      if (index === 0) return; // skip now playing
 
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <img src="${track.art}" 
-               style="width:40px;height:40px;border-radius:6px;margin-right:10px;vertical-align:middle;">
-          <strong>${track.title}</strong> — ${track.artist}
-        `;
-        recentList.appendChild(li);
-      });
-    }
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <img src="${track.art}">
+        <div>
+          <strong>${track.title}</strong><br>
+          ${track.artist}
+        </div>
+      `;
+      recentList.appendChild(li);
+    });
 
   } catch (e) {
     console.error(e);
