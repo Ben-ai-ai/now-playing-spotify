@@ -76,3 +76,27 @@ h1 {
   font-size: 0.9rem;
   color: #aaaaaa;
 }
+
+/* Recently Played list */
+#recentList {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  text-align: left;
+}
+
+#recentList li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+#recentList li img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  margin-right: 12px;
+  object-fit: cover;
+}
