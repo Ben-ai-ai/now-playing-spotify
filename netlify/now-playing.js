@@ -1,58 +1,34 @@
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 exports.handler = async () => {
+  const username = "Benxs44";
+  const apiKey = "db9963b4676e1bdec97a158e88e8d3de";
+
+  const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`;
+
   try {
-    const token = await getAccessToken();
+    const response = await fetch(url);
+    const json = await response.json();
 
-    const res = await fetch('https://api.spotify.com/v1/me/player/currently-playing', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    const track = json.recenttracks.track[0];
 
-    if (res.status === 204 || res.status === 202) {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ playing: false })
-      };
-    }
-
-    const data = await res.json();
+    const isNowPlaying =
+      track["@attr"] && track["@attr"].nowplaying === "true";
 
     return {
       statusCode: 200,
       body: JSON.stringify({
-        playing: data.is_playing,
-        title: data.item.name,
-        artist: data.item.artists.map(a => a.name).join(', '),
-        albumArt: data.item.album.images[0].url
-      })
+        playing: isNowPlaying,
+        title: track.name,
+        artist: track.artist["#text"],
+        albumArt: track.image[3]["#text"] || track.image[2]["#text"] || "",
+      }),
     };
   } catch (err) {
     console.error(err);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Server error' })
+      body: JSON.stringify({ error: "Failed to load track" }),
     };
   }
 };
-
-async function getAccessToken() {
-  const refresh = process.env.SPOTIFY_REFRESH_TOKEN;
-  const id = process.env.SPOTIFY_CLIENT_ID;
-  const secret = process.env.SPOTIFY_CLIENT_SECRET;
-
-  const auth = Buffer.from(`${id}:${secret}`).toString('base64');
-
-  const res = await fetch('https://accounts.spotify.com/api/token', {
-    method: 'POST',
-    headers: {
-      Authorization: `Basic ${auth}`,
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: `grant_type=refresh_token&refresh_token=${encodeURIComponent(refresh)}`
-  });
-
-  const json = await res.json();
-  return json.access_token;
-}
