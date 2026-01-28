@@ -46,80 +46,14 @@ body {
   line-height: 1.6;
 }
 
-/* Card styling */
-.card {
-  flex: 1;
-  background: #15151f;
-  padding: 30px;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(0,0,0,0.6);
-}
-
-h1 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  color: #1db954;
-}
-
-#albumArt {
-  width: 250px;
-  height: 250px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  object-fit: cover;
-  background: #222;
-}
-
-#status {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #aaaaaa;
-}
-
-/* Recently Played list */
-#recentList {
-  list-style: none;
-  padding: 0;
-  margin-top: 15px;
-}
-
-#recentList li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-  font-size: 0.9rem;
-  color: #ddd;
-}
-
-#recentList li img {
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
-  margin-right: 10px;
-  object-fit: cover;
-}
-#usernameInput {
-  width: 100%;
-  padding: 8px;
-  margin: 8px 0;
-  border-radius: 6px;
-  border: none;
-}
-
+/* Username input + Load button */
+#usernameInput,
 #loadUserBtn {
   width: 100%;
+  box-sizing: border-box;
+}
+
+#usernameInput {
   padding: 8px;
-  background: #1db954;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-#loadUserBtn:hover {
-  background: #17a347;
-}
-
+  margin: 8px 0;
+  border
