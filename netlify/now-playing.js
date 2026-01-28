@@ -1,8 +1,6 @@
-const fetch = require("node-fetch");
-
 exports.handler = async () => {
-  const username = "Benxs44";
-  const apiKey = "db9963b4676e1bdec97a158e88e8d3de";
+  const username = "YOUR_LASTFM_USERNAME";
+  const apiKey = "YOUR_LASTFM_API_KEY";
 
   const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`;
 
